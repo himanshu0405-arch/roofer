@@ -121,22 +121,28 @@ export default function Motion() {
           });
         });
 
-        // Chapter marker
-        gsap.utils.toArray<HTMLElement>("[data-chapter]").forEach((sec) => {
+        // Chapter marker: enter/leave callbacks stay correct even after fast jumps
+        const mark = (id: string | null) =>
+          document.querySelectorAll<HTMLElement>(".chapters a").forEach((a) =>
+            a.setAttribute("aria-current", String(a.dataset.target === id))
+          );
+        const chapters = gsap.utils.toArray<HTMLElement>("[data-chapter]");
+        chapters.forEach((sec, i) => {
+          const id = sec.getAttribute("data-chapter");
           ScrollTrigger.create({
             trigger: sec, start: "top 55%", end: "bottom 55%",
-            onToggle: (self) => {
-              if (!self.isActive) return;
-              const id = sec.getAttribute("data-chapter");
-              document.querySelectorAll<HTMLElement>(".chapters a").forEach((a) =>
-                a.setAttribute("aria-current", String(a.dataset.target === id))
-              );
-            },
+            onEnter: () => mark(id), onEnterBack: () => mark(id),
+            onLeave: () => i === chapters.length - 1 && mark(null), // past the last chapter (CTA/footer)
           });
         });
 
         // Pinned horizontal process (desktop only)
         const mm = gsap.matchMedia();
+        mm.add("(max-width: 900px)", () => {
+          gsap.utils.toArray<HTMLElement>(".process__step").forEach((st) =>
+            gsap.from(st, { y: 28, opacity: 0, duration: 0.7, ease: "power2.out", scrollTrigger: { trigger: st, start: "top 88%", once: true } })
+          );
+        });
         mm.add("(min-width: 901px)", () => {
           const pin = document.querySelector<HTMLElement>(".process__pin");
           const track = document.querySelector<HTMLElement>(".process__track");

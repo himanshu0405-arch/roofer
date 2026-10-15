@@ -31,3 +31,9 @@ Method: production build, Chrome via Playwright, screenshots at 1440/768/390, pr
 - Reduced-motion: all content visible, no transforms.
 - Sticky mobile "Call / Free Estimate" bar; no horizontal overflow at any width.
 - Placeholder notices are visible and honest, matching the brief.
+
+## Fix status (re-verified in Chrome at 1440 and via scripted fast jumps)
+- Problem 1 fixed: chapter marker uses enter/enter-back callbacks and clears past the last chapter. Verified across jumps and reverse scrolling.
+- Problems 2 and 3 fixed: `.process__pin` padding is now `8rem 4rem`; numerals no longer clip under the header and the dead band is gone.
+- Problem 4 fixed: chapter labels have a bone background chip.
+- Problems 5 and 6 fixed: mobile numerals use copper at 50%; mobile process steps reveal one by one. The mobile changes were built and type-checked but not re-screenshotted.
