@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ServiceList from "@/components/ServiceList";
 import AreaMap from "@/components/AreaMap";
+import DragGallery from "@/components/DragGallery";
 import { Arrow, Chapters, CtaBand, Notice, Roofline, SecHead } from "@/components/ui";
 import { processSteps, projects, reviews } from "@/lib/data";
 import { site } from "@/lib/site";
@@ -23,7 +24,6 @@ const trust = [
 ];
 
 export default function Home() {
-  const [lead, ...rest] = projects.slice(0, 3);
   return (
     <>
       <Chapters items={chapters} />
@@ -88,22 +88,7 @@ export default function Home() {
           <SecHead split label="Selected work" title="A look at recent roofs.">
             <Notice>Sample project details shown. Replace with real projects before launch.</Notice>
           </SecHead>
-          <div className="feature-grid">
-            <article className="proj proj--lead" data-reveal>
-              <div className="proj__img"><Image src={lead.image} alt={lead.title} fill sizes="(max-width: 900px) 100vw, 60vw" style={{ objectFit: "cover" }} data-parallax="6" /></div>
-              <div className="proj__meta"><span>{lead.location}</span><span>{lead.service}</span></div>
-              <h3>{lead.title}</h3>
-            </article>
-            <div className="stack">
-              {rest.map((p) => (
-                <article key={p.slug} className="proj" data-reveal>
-                  <div className="proj__img"><Image src={p.image} alt={p.title} fill sizes="(max-width: 900px) 100vw, 40vw" style={{ objectFit: "cover" }} /></div>
-                  <div className="proj__meta"><span>{p.location}</span><span>{p.service}</span></div>
-                  <h3>{p.title}</h3>
-                </article>
-              ))}
-            </div>
-          </div>
+          <div data-reveal="fade"><DragGallery items={projects.slice(0, 7)} /></div>
           <div style={{ marginTop: "3rem" }} data-reveal><Link href="/projects" className="arrow-link">All projects <Arrow /></Link></div>
         </div>
       </section>

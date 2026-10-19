@@ -104,6 +104,15 @@ export default function Motion() {
           onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 0.9, stagger: 0.09, ease: "power3.out", overwrite: true }),
         });
 
+        // Picture wipe: images open upward as they enter (clip-path only, so parallax and hover zoom keep their transforms)
+        ScrollTrigger.batch("[data-reveal] .proj__img, .edit__img", {
+          start: "top 90%", once: true,
+          onEnter: (els) => els.forEach((el, i) => {
+            (el as HTMLElement).style.transitionDelay = `${i * 0.12}s`;
+            el.classList.add("is-shown");
+          }),
+        });
+
         // Parallax imagery (transform only)
         gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
           const amt = parseFloat(el.dataset.parallax || "10");
