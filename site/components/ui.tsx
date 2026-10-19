@@ -10,10 +10,17 @@ export const Arrow = ({ size = 16 }: { size?: number }) => (
 );
 
 export function Roofline() {
+  const d = "M0 112 L180 112 L360 52 L540 112 L760 112 L960 24 L1160 112 L1300 112 L1380 70 L1440 112";
   return (
-    <svg className="roofline" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" height="120">
-      <path pathLength={1} d="M0 112 L180 112 L360 52 L540 112 L760 112 L960 24 L1160 112 L1300 112 L1380 70 L1440 112" />
-    </svg>
+    <>
+      <svg className="roofline" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" height="120">
+        <path pathLength={1} d={d} />
+      </svg>
+      {/* Ambient light that travels along the skyline. Separate svg so the scroll-drawn line is untouched. */}
+      <svg className="roofglint" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" height="120">
+        <path pathLength={1} d={d} />
+      </svg>
+    </>
   );
 }
 

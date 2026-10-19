@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+  <defs>
+    <pattern id="s" width="32" height="16" patternUnits="userSpaceOnUse"><path d="M0 15.5h32M16 0v15.5" stroke="#000" stroke-opacity=".28" fill="none"/></pattern>
+  </defs>
+  <rect width="800" height="600" fill="#cfd6da"/>
+  <rect y="500" width="800" height="100" fill="#a9ae98"/>
+  <rect x="120" y="290" width="560" height="210" fill="#e6dccb"/>
+  <rect x="190" y="340" width="110" height="80" fill="#9fb4c0" stroke="#14181f" stroke-opacity=".3"/>
+  <rect x="500" y="340" width="110" height="80" fill="#9fb4c0" stroke="#14181f" stroke-opacity=".3"/>
+  <rect x="360" y="390" width="80" height="110" fill="#4a3a2e"/>
+  <path d="M70 290 L400 90 L730 290 Z" fill="#7a766f"/>
+  <path d="M70 290 L400 90 L730 290 Z" fill="url(#s)"/>
+  <!-- worn patches, missing shingles, moss -->
+  <path d="M250 235 l50 -30 l40 24 l-48 30 z" fill="#5d5a55"/>
+  <path d="M470 190 l46 -26 l36 22 l-44 28 z" fill="#8f8b82"/>
+  <circle cx="330" cy="170" r="22" fill="#59693f" fill-opacity=".55"/>
+  <circle cx="560" cy="250" r="26" fill="#59693f" fill-opacity=".5"/>
+  <path d="M400 90 l-14 20 l30 4 z" fill="#4f4c47"/>
+  <path d="M70 290 L400 90 L730 290 Z" fill="none" stroke="#14181f" stroke-opacity=".35" stroke-width="3"/>
+  <text x="400" y="570" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#14181f" fill-opacity=".7">SAMPLE ILLUSTRATION</text>
+</svg>

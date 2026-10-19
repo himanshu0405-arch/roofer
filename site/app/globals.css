@@ -345,3 +345,35 @@ button { font: inherit; cursor: pointer; }
 
 /* Parallax images are oversized inside an overflow-hidden frame so edges never show */
 img[data-parallax] { height: 120% !important; top: -10% !important; will-change: transform; }
+
+/* Roof visualizer */
+.viz { display: grid; gap: clamp(1.5rem, 4vw, 3rem); grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); align-items: start; }
+.viz__stage { position: relative; border: 1px solid var(--line); background: var(--bone-raised); aspect-ratio: 600 / 380; }
+.viz__svg { display: block; width: 100%; height: 100%; }
+.viz__toggle { position: absolute; left: 1rem; bottom: 1rem; min-height: 44px; background: var(--bone-raised); }
+.viz__panel { display: grid; gap: 1.6rem; }
+.viz__btn { min-height: 44px; }
+.viz__swatches { display: flex; gap: .8rem; overflow-x: auto; padding: 4px; }
+.viz__swatch { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--bone-raised); box-shadow: 0 0 0 1px var(--line); cursor: pointer; }
+.viz__swatch[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--copper); }
+.viz__swatch:focus-visible, .viz__toggle:focus-visible { outline: 2px solid var(--copper); outline-offset: 3px; }
+.viz__sel { font-family: var(--serif); font-size: 1.4rem; }
+@media (max-width: 900px) { .viz { grid-template-columns: 1fr; } }
+
+/* Before / after slider */
+.ba { margin: 0; position: relative; width: 100%; }
+.ba__box { position: absolute; inset: 0; overflow: hidden; touch-action: pan-y; cursor: ew-resize; user-select: none; }
+.ba__top { position: absolute; inset: 0; }
+.ba__tag { position: absolute; top: 1rem; padding: .35rem .7rem; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; background: rgba(20,24,31,.75); color: var(--bone); }
+.ba__tag--l { left: 1rem; } .ba__tag--r { right: 1rem; }
+.ba__line { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; transform: translateX(-1px); }
+.ba__handle { position: absolute; top: 50%; left: 50%; width: 44px; height: 44px; transform: translate(-50%, -50%); border-radius: 50%; border: 2px solid #fff; background: var(--copper); cursor: ew-resize; }
+.ba__handle::before { content: "\2194"; color: #fff; font-size: 18px; }
+.ba__handle:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+/* Hero ambient motion: a pulse of copper light travels along the skyline, with a slow warm glow behind it */
+.roofglint { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; pointer-events: none; }
+.roofglint path { fill: none; stroke: #f0b88f; stroke-width: 2.4; stroke-linecap: round; vector-effect: non-scaling-stroke; stroke-dasharray: 0.07 0.93; stroke-dashoffset: 0; filter: drop-shadow(0 0 6px rgba(224, 164, 125, 0.9)); animation: glint 7s linear 1.6s infinite; opacity: 0; }
+@keyframes glint { 0% { stroke-dashoffset: 0; opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { stroke-dashoffset: -1; opacity: 0; } }
+.hero:not(.hero--page) .hero__media::before { content: ""; position: absolute; z-index: 1; left: 55%; bottom: 8%; width: 60vmax; height: 60vmax; transform: translate(-50%, 30%); background: radial-gradient(closest-side, rgba(224, 164, 125, 0.28), transparent 70%); animation: glow 9s ease-in-out infinite alternate; pointer-events: none; }
+@keyframes glow { from { opacity: 0.45; transform: translate(-50%, 30%) scale(0.92); } to { opacity: 0.9; transform: translate(-46%, 24%) scale(1.06); } }

@@ -19,6 +19,7 @@ export const nav = [
   { href: "/roofing-services", label: "Services" },
   { href: "/locations", label: "Service Areas" },
   { href: "/projects", label: "Projects" },
+  { href: "/roof-visualizer", label: "Visualizer" },
   { href: "/reviews", label: "Reviews" },
   { href: "/about-us", label: "About" },
   { href: "/blog", label: "Blog" },

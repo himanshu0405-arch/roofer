@@ -6,7 +6,7 @@ import { estimateSchema, serviceOptions } from "@/lib/estimate";
 
 type Errors = Record<string, string>;
 
-export default function EstimateForm({ defaultService = "" }: { defaultService?: string }) {
+export default function EstimateForm({ defaultService = "", defaultMessage = "" }: { defaultService?: string; defaultMessage?: string }) {
   const [step, setStep] = useState(0);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
@@ -87,7 +87,7 @@ export default function EstimateForm({ defaultService = "" }: { defaultService?:
       </fieldset>
 
       <fieldset style={{ display: step === 2 ? "grid" : "none", gap: "1.6rem", border: 0, padding: 0, margin: 0 }}>
-        <div className="field"><label htmlFor="message">Message (optional)</label><textarea id="message" name="message" maxLength={2000} /></div>
+        <div className="field"><label htmlFor="message">Message (optional)</label><textarea key={defaultMessage} id="message" name="message" maxLength={2000} defaultValue={defaultMessage} /></div>
         <div className="field">
           <label className="check" style={{ textTransform: "none", letterSpacing: 0, fontSize: 13, fontWeight: 400 }}>
             <input type="checkbox" name="consent" {...aria("consent")} />
