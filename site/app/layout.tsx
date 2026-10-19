@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import Intro from "@/components/Intro";
 import Footer from "@/components/Footer";
 import Motion from "@/components/Motion";
 import MobileCta from "@/components/MobileCta";
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             }}
           />
         )}
+        <Intro />
         <Header />
         <main id="main">{children}</main>
         <Footer />

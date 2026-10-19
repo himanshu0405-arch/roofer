@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import type Lenis from "lenis";
 
 const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+const INTRO_DELAY = 2.3; // seconds; the curtain starts lifting at 2.1s in globals.css
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // Animation libraries are loaded on demand so they stay out of the initial JS bundle.
@@ -62,7 +63,10 @@ export default function Motion() {
         });
 
         // Hero intro
-        const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        // Wait for the entry curtain (see Intro.tsx / .intro in globals.css) on the first load of a session.
+        const introDelay = root.classList.contains("no-intro") || sessionStorage.getItem("intro-played") ? 0 : INTRO_DELAY;
+        try { sessionStorage.setItem("intro-played", "1"); } catch {}
+        const heroTl = gsap.timeline({ delay: introDelay, defaults: { ease: "power3.out" } });
         document.querySelectorAll<HTMLElement>("[data-split]").forEach((el) => {
           if (el.dataset.splitDone) return;
           el.dataset.splitDone = "1";
