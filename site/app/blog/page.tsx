@@ -8,9 +8,15 @@ export default function Page() {
   return (
     <>
       <PageHero title="Roofing advice, plainly put." intro="Maintenance, materials, storm damage and answers to common questions." image="/images/p21.jpg" crumbs={[{ label: "Blog" }]} cta={false} />
-      <section className="section">
+      <section className="section blog-section">
         <div className="wrap">
-          <div style={{ marginBottom: "2rem" }}><Notice>Starter articles. Have the company review all content for accuracy before launch.</Notice></div>
+          <div className="blog-section__intro">
+            <div>
+              <span className="label">From the roofline</span>
+              <h2>Good questions make for better roofs.</h2>
+            </div>
+            <div className="blog-section__note"><Notice>Starter articles. Have the company review all content for accuracy before launch.</Notice></div>
+          </div>
           <BlogList />
         </div>
       </section>

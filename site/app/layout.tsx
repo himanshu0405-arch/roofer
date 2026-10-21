@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: { type: "website", siteName: site.name, locale: "en_US" },
 };
 
-export const viewport: Viewport = { themeColor: "#f6f2ea", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#f1f2e9", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
